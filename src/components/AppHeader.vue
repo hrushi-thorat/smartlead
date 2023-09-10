@@ -15,7 +15,13 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 50px;
+    max-height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding:24px 16px;
     background: #00056A;
     box-shadow: 0px 2px 4px 0px rgba(141, 143, 169, 0.10);
 }
