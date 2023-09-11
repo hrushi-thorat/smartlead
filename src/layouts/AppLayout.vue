@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-header></app-header>
+    <app-header :showCta="true"></app-header>
     <app-sidebar></app-sidebar>
     <main class="sl--main_section-wrapper">
       <router-view />
