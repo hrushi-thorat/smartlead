@@ -5,6 +5,7 @@ const routes = [
   {
     path: "/",
     name: "login",
+    meta: { guestOnly: true },
     component: LoginView,
   },
   {
@@ -31,6 +32,13 @@ router.beforeEach((to, from, next) => {
   if (to.matched.some((record) => record.meta.requiresAuth)) {
     if (!isAuthenticated) {
       next({ name: "login" });
+    } else {
+      next();
+    }
+  } else if (to.matched.some((record) => record.meta.guestOnly)) {
+    // If the user is logged in and tries to visit the login page, redirect to dashboard
+    if (isAuthenticated) {
+      next({ name: "dashboard" });
     } else {
       next();
     }
