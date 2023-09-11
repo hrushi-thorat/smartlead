@@ -46,7 +46,7 @@ export default createStore({
       },
       {
         id: 2,
-        title: "SW Zero Personalisation 1",
+        title: "Untitled Campaign",
         status: "draft",
         seq: "4",
         completed: 0,
@@ -84,7 +84,7 @@ export default createStore({
       },
       {
         id: 3,
-        title: "SW Zero Personalisation 1",
+        title: "Feb Campaign",
         status: "stopped",
         seq: "3",
         completed: 30,
@@ -121,7 +121,7 @@ export default createStore({
       },
       {
         id: 4,
-        title: "SW Zero Personalisation 1",
+        title: "All the Best",
         status: "paused",
         seq: "3",
         completed: 30,
