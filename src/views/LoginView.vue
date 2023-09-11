@@ -13,6 +13,7 @@
             <input
               id="user-email"
               type="email"
+              v-model="email"
               class="login-input email-input"
             />
           </div>
@@ -24,6 +25,7 @@
             <div class="input-wrapper">
               <input
                 id="user-password"
+                v-model="password"
                 :type="showPassword ? 'text' : 'password'"
                 ref="password"
               />
@@ -33,7 +35,9 @@
             </div>
           </div>
         </div>
-        <button class="sl--login__form-card-submit-button">Sign in</button>
+        <button @click="login" class="sl--login__form-card-submit-button">
+          Sign in
+        </button>
       </div>
     </div>
   </div>
@@ -41,6 +45,7 @@
 
 <script>
 import AppHeader from "@/components/AppHeader.vue";
+import { mapActions } from "vuex";
 export default {
   components: {
     AppHeader,
@@ -48,9 +53,23 @@ export default {
   data() {
     return {
       showPassword: false,
+      email: "",
+      password: "",
     };
   },
   methods: {
+    ...mapActions(["loginUser"]),
+    async login() {
+      const loggedIn = await this.loginUser({
+        username: this.email,
+        password: this.password,
+      });
+      if (loggedIn) {
+        this.$router.push("/dashboard");
+      } else {
+        alert("Wrong username or password");
+      }
+    },
     showHidePassword() {
       this.showPassword =
         this.$refs.password.type === "password" ? true : false;
