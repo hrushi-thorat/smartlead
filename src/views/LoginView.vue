@@ -28,6 +28,7 @@
                 v-model="password"
                 :type="showPassword ? 'text' : 'password'"
                 ref="password"
+                @keydown.enter="login"
               />
               <span class="show-button" @click="showHidePassword">{{
                 showPassword ? "Hide" : "Show"
