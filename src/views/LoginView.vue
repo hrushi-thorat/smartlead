@@ -24,11 +24,12 @@
             <div class="input-wrapper">
               <input
                 id="user-password"
-                :type="showPassword ?'text' :'password'"
-                
+                :type="showPassword ? 'text' : 'password'"
                 ref="password"
               />
-              <span class="show-button" @click="showHidePassword">{{showPassword ? 'Hide' : 'Show'}}</span>
+              <span class="show-button" @click="showHidePassword">{{
+                showPassword ? "Hide" : "Show"
+              }}</span>
             </div>
           </div>
         </div>
@@ -44,16 +45,17 @@ export default {
   components: {
     AppHeader,
   },
-  data(){
-return{
-  showPassword :false
-}
+  data() {
+    return {
+      showPassword: false,
+    };
   },
-  methods:{
-    showHidePassword(){
-      this.showPassword = this.$refs.password.type === 'password' ? true :false
-    }
-  }
+  methods: {
+    showHidePassword() {
+      this.showPassword =
+        this.$refs.password.type === "password" ? true : false;
+    },
+  },
 };
 </script>
 
@@ -125,7 +127,7 @@ return{
         font-weight: 500;
         font-size: 14px;
         color: #757ae9;
-        cursor:pointer;
+        cursor: pointer;
         user-select: none;
       }
     }
@@ -145,28 +147,28 @@ return{
   border: none;
   cursor: pointer;
 }
-.input-wrapper{
+.input-wrapper {
   border-radius: 3px;
-      border: 1px solid #c6c7db;
-      background: #fff;
-      padding: 11px;
-      font-weight: 400;
-      font-size: 15px;
-      color: #000115;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      input{
-        height: 100%;
-        width: 100%;
-        border: none;
-        outline: none !important;
-        flex:1;
-      }
-      .show-button{
-        color: #686B8A;
-        font-size: 14px;
-        cursor:pointer;
-      }
+  border: 1px solid #c6c7db;
+  background: #fff;
+  padding: 11px;
+  font-weight: 400;
+  font-size: 15px;
+  color: #000115;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    outline: none !important;
+    flex: 1;
+  }
+  .show-button {
+    color: #686b8a;
+    font-size: 14px;
+    cursor: pointer;
+  }
 }
 </style>

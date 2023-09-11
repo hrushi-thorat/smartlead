@@ -81,6 +81,7 @@ export default {
   left: 0px;
   bottom: 0px;
   padding: 11px 0px;
+  border-right: 1px solid #e1e3ef;
   .sl--sidebar_rout-link-wrapper {
     display: flex;
     flex-direction: column;

@@ -2,7 +2,7 @@
   <div>
     <app-header></app-header>
     <app-sidebar></app-sidebar>
-    <main>
+    <main class="sl--main_section-wrapper">
       <router-view />
     </main>
   </div>
@@ -19,5 +19,9 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+.sl--main_section-wrapper {
+  margin-top: 50px;
+  margin-left: 230px;
+}
 </style>
