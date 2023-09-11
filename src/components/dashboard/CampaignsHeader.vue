@@ -1,6 +1,6 @@
 <template>
   <div class="sl--campaign-header__wrapper">
-    <h6 class="sl--campaign-header--title">All Campaigns (24)</h6>
+    <h6 class="sl--campaign-header--title">All Campaigns ({{filteredCampaigns.length}})</h6>
     <div class="sl--campaign-header__search-cta-wrapper">
       <div class="sl--campaign-header-search-input-wrapper">
         <svg
@@ -20,6 +20,9 @@
         <input
           placeholder="Search Campaigns"
           class="sl--campaign-header-search-input"
+          v-model="searchQuery"
+          @input="handleInput"
+          @keydown.enter="performSearch"
         />
       </div>
       <button type="button" class="sl--button--primary">+ Add Campaign</button>
@@ -28,7 +31,40 @@
 </template>
 
 <script>
-export default {};
+import { mapActions,mapGetters } from "vuex";
+export default {
+  data() {
+    return {
+      searchQuery: "",
+      debouncedSearch: null,
+    };
+  },
+  computed: {
+    ...mapGetters(['getCampaigns']),
+    filteredCampaigns() {
+      return this.getCampaigns;
+    },
+  },
+  methods: {
+    ...mapActions(["searchCampaigns"]),
+    handleInput() {
+      if (this.debouncedSearch) {
+        clearTimeout(this.debouncedSearch);
+      }
+      this.debouncedSearch = setTimeout(() => {
+        this.performSearch();
+      }, 300);
+    },
+    performSearch() {
+      this.searchCampaigns(this.searchQuery);
+    },
+  },
+  beforeUnmount() {
+    if (this.debouncedSearch) {
+      clearTimeout(this.debouncedSearch);
+    }
+  },
+};
 </script>
 
 <style lang="scss">

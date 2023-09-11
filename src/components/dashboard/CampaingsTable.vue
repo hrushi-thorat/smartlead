@@ -7,7 +7,7 @@
     </div>
     <div
       class="sl--campaigntable-row --body"
-      v-for="campaign in campaigns"
+      v-for="campaign in filteredCampaigns"
       :key="campaign.id"
     >
       <div class="checkbox-column"><checkbox></checkbox></div>
@@ -172,6 +172,7 @@
 import Checkbox from "@/components/UI/Checkbox.vue";
 import RadialProgress from "@/components/UI/RadialProgress.vue";
 import ReportColumnEntity from "./ReportColumnEntity.vue";
+import { mapGetters,mapActions } from 'vuex';
 export default {
   components: {
     Checkbox,
@@ -180,159 +181,22 @@ export default {
   },
   data() {
     return {
-      campaigns: [
-        {
-          id: 1,
-          title: "SW Zero Personalisation 1",
-          status: "sent",
-          seq: "3",
-          completed: 30,
-          reports: [
-            {
-              value: "520",
-              title: "sent",
-            },
-            {
-              value: "39",
-              title: "Clicked",
-              per: "19.6%",
-              color: "#EEB728",
-            },
-            {
-              value: "202",
-              title: "Opened",
-              per: "32.6%",
-              color: "#BF51C1",
-            },
-            {
-              value: "4",
-              title: "Replied",
-              per: "32.6%",
-              color: "#51C1C1",
-            },
-            {
-              value: "0",
-              title: "Positive Reply",
-              per: "0.0%",
-              color: "#2CDB28",
-            },
-          ],
-        },
-        {
-          id: 2,
-          title: "SW Zero Personalisation 1",
-          status: "draft",
-          seq: "4",
-          completed: 0,
-          reports: [
-            {
-              value: "0",
-              color: "#999BA8",
-              title: "sent",
-            },
-            {
-              value: "0",
-              title: "Clicked",
-              per: "0%",
-              color: "#999BA8",
-            },
-            {
-              value: "0",
-              title: "Opened",
-              per: "0%",
-              color: "#999BA8",
-            },
-            {
-              value: "0",
-              title: "Replied",
-              per: "0%",
-              color: "#999BA8",
-            },
-            {
-              value: "0",
-              title: "Positive Reply",
-              per: "0.0%",
-              color: "#999BA8",
-            },
-          ],
-        },
-        {
-          id: 3,
-          title: "SW Zero Personalisation 1",
-          status: "stopped",
-          seq: "3",
-          completed: 30,
-          reports: [
-            {
-              value: "540",
-              title: "sent",
-            },
-            {
-              value: "41",
-              title: "Clicked",
-              per: "19.6%",
-              color: "#EEB728",
-            },
-            {
-              value: "204",
-              title: "Opened",
-              per: "32.6%",
-              color: "#BF51C1",
-            },
-            {
-              value: "6",
-              title: "Replied",
-              per: "32.6%",
-              color: "#51C1C1",
-            },
-            {
-              value: "3",
-              title: "Positive Reply",
-              per: "0.0%",
-              color: "#2CDB28",
-            },
-          ],
-        },
-        {
-          id: 4,
-          title: "SW Zero Personalisation 1",
-          status: "paused",
-          seq: "3",
-          completed: 30,
-          reports: [
-            {
-              value: "550",
-              title: "sent",
-            },
-            {
-              value: "43",
-              title: "Clicked",
-              per: "19.6%",
-              color: "#EEB728",
-            },
-            {
-              value: "205",
-              title: "Opened",
-              per: "32.6%",
-              color: "#BF51C1",
-            },
-            {
-              value: "8",
-              title: "Replied",
-              per: "32.6%",
-              color: "#51C1C1",
-            },
-            {
-              value: "6",
-              title: "Positive Reply",
-              per: "0.0%",
-              color: "#2CDB28",
-            },
-          ],
-        },
-      ],
+     
     };
   },
+  methods:{
+    ...mapActions(['searchCampaigns']),
+  },
+  computed: {
+    ...mapGetters(['getCampaigns']),
+    filteredCampaigns() {
+      return this.getCampaigns;
+    },
+  },
+  created(){
+    this.searchCampaigns()
+  }
+
 };
 </script>
 
